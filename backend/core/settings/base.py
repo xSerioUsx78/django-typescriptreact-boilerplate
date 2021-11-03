@@ -22,9 +22,6 @@ FRONTEND_DIR = os.path.join(BASE_DIR.parent, 'frontend')
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY')
-
 
 # Application definition
 
@@ -122,10 +119,11 @@ MEDIA_URL = '/media/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 """ 
-if you wanna use custom user model uncomment this
-and give it the user model path
+If you don't want use a custom user model
+so comment the below line and remove the abstract model
+in users.model
 """
-# AUTH_USER_MODEL = 'users.User'
+AUTH_USER_MODEL = 'users.User'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [

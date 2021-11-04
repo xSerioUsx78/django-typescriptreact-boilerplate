@@ -1,0 +1,1 @@
+export const serverError_500 = 'Network error! Please try again';

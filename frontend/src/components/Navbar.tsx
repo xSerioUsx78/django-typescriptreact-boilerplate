@@ -2,6 +2,9 @@ import { Fragment, useMemo } from 'react';
 import { Popover, Transition } from '@headlessui/react';
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
 import { Link, NavLink } from 'react-router-dom';
+import { useAppSelector, useAppDispatch } from '../redux/store';
+import { logoutUser } from '../redux/slice/auth';
+import Button from './features/Button';
 
 
 const Navbar = () => {
@@ -15,6 +18,9 @@ const Navbar = () => {
     ];
     return navigations;
   }, []);
+
+  const dispatch = useAppDispatch();
+  const auth = useAppSelector(state => state.auth);
 
   return (
     <Popover>
@@ -46,17 +52,33 @@ const Navbar = () => {
             </div>
           </div>
           <div className="hidden md:block md:ml-10 md:pr-4 md:space-x-8">
-            <Link to="/login/" 
-            className="font-medium text-indigo-600 hover:text-indigo-500">
-              Log in
-            </Link>
-            <Link to="/register/" 
-              className="whitespace-nowrap inline-flex items-center 
-              justify-center px-4 py-2 border border-transparent 
-              rounded-md shadow-sm text-base font-medium text-white 
-              bg-indigo-600 hover:bg-indigo-700">
-                Register
-            </Link>
+            {
+              auth.isAuthenticated
+              ?
+              <Button
+                onClick={() => dispatch(logoutUser())}
+                type="button"
+                text="Logout"
+                loading={auth.isLoading}
+                className="whitespace-nowrap inline-flex items-center 
+                justify-center px-4 py-2 border border-transparent 
+                rounded-md shadow-sm text-base font-medium text-white 
+                bg-indigo-600 hover:bg-indigo-700" />
+              :
+              <>
+                <Link to="/login/" 
+                className="font-medium text-indigo-600 hover:text-indigo-500">
+                  Log in
+                </Link>
+                <Link to="/register/" 
+                  className="whitespace-nowrap inline-flex items-center 
+                  justify-center px-4 py-2 border border-transparent 
+                  rounded-md shadow-sm text-base font-medium text-white 
+                  bg-indigo-600 hover:bg-indigo-700">
+                    Register
+                </Link>
+              </>
+            }
           </div>
         </nav>
       </div>

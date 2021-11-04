@@ -38,6 +38,9 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'corsheaders',
     'django_cleanup.apps.CleanupConfig',
+
+    # My apps
+    'users',
 ]
 
 MIDDLEWARE = [

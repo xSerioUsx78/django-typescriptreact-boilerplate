@@ -2,10 +2,10 @@ import { endpoint } from "./server";
 
 
 const requests = {
-    register: `${endpoint}/register/`,
-    login: `${endpoint}/login/`,
-    logout: `${endpoint}/logout/`,
-    getUser: `${endpoint}/user/`
+    register: `${endpoint}/users/register/`,
+    login: `${endpoint}/users/login/`,
+    logout: `${endpoint}/users/logout/`,
+    getUser: `${endpoint}/users/user/`
 };
 
 export default requests;
